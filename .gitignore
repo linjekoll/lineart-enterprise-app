@@ -1,0 +1,15 @@
+# Mac OS X
+.DS_Store
+
+# Java
+*.class
+
+# Netbeans
+
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml

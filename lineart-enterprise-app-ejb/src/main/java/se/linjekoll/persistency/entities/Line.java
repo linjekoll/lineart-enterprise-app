@@ -62,7 +62,10 @@ public class Line implements Serializable {
     private Date updatedAt;
     @ManyToMany(mappedBy="lines")
     private List<Stop> stops;
-
+    @ManyToOne
+    @JoinColumn(name = "vehicle_type_id")
+    private VehicleType vehicleType;
+    
     public Line() {
     }
 

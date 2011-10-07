@@ -15,7 +15,7 @@ import se.linjekoll.persistency.entities.Provider;
  */
 @Stateless
 public class ProviderFacade extends AbstractFacade<Provider> {
-    @PersistenceContext(unitName = "lineart_pu")
+    @PersistenceContext(unitName = "postgres_pu")
     private EntityManager em;
 
     protected EntityManager getEntityManager() {

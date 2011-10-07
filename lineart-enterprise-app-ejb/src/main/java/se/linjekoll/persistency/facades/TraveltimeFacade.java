@@ -15,7 +15,7 @@ import se.linjekoll.persistency.entities.Traveltime;
  */
 @Stateless
 public class TraveltimeFacade extends AbstractFacade<Traveltime> {
-    @PersistenceContext(unitName = "lineart_pu")
+    @PersistenceContext(unitName = "postgres_pu")
     private EntityManager em;
 
     protected EntityManager getEntityManager() {

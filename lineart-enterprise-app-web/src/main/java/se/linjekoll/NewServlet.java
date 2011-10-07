@@ -24,7 +24,7 @@ import se.linjekoll.persistency.facades.RoleFacade;
 @WebServlet(name = "NewServlet", urlPatterns = {"/"})
 public class NewServlet extends HttpServlet {
     @EJB
-    private AbstractFacade<Role> rf;
+    private RoleFacade rf;
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -54,8 +54,10 @@ public class NewServlet extends HttpServlet {
             rf.create(r);
             } catch (Exception e) {
                 System.err.print(e.getMessage());
-                ConstraintViolationException ec = (ConstraintViolationException) e.getCause();
-                System.err.println(ec.getConstraintViolations());
+//                if( e.getCause() instanceof ConstraintViolationException) {
+//                ConstraintViolationException ec = (ConstraintViolationException) e.getCause();
+//                System.err.println(ec.getConstraintViolations());
+//                }
             }
         } finally {            
             out.close();

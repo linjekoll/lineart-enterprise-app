@@ -19,6 +19,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import se.linjekoll.persistency.entities.superclasses.TimeStampedEntity;
 
 /**
  *
@@ -26,7 +27,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name="vehicle_types")
-public class VehicleType implements Serializable {
+public class VehicleType extends TimeStampedEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,13 +38,6 @@ public class VehicleType implements Serializable {
     @Size(max = 255)
     @Column(name = "name", length = 255)
     private String name;
-    
-    @Column(name = "created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-    @Column(name = "updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
     
     @OneToMany(mappedBy="vehicleType")
     private List<Line> lines;
@@ -79,6 +73,34 @@ public class VehicleType implements Serializable {
     @Override
     public String toString() {
         return "se.linjekoll.persistency.entities.VehicleType[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the lines
+     */
+    public List<Line> getLines() {
+        return lines;
+    }
+
+    /**
+     * @param lines the lines to set
+     */
+    public void setLines(List<Line> lines) {
+        this.lines = lines;
     }
     
 }

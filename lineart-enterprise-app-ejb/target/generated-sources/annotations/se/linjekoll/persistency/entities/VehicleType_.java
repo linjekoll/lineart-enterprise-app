@@ -7,7 +7,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import se.linjekoll.persistency.entities.Line;
 
-@Generated(value="EclipseLink-2.2.0.v20110202-r8913", date="2011-10-06T21:20:01")
+@Generated(value="EclipseLink-2.2.0.v20110202-r8913", date="2011-10-07T13:16:04")
 @StaticMetamodel(VehicleType.class)
 public class VehicleType_ { 
 

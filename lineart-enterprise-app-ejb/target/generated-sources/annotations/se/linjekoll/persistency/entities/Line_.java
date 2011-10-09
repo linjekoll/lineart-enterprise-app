@@ -9,7 +9,7 @@ import se.linjekoll.persistency.entities.Provider;
 import se.linjekoll.persistency.entities.Stop;
 import se.linjekoll.persistency.entities.VehicleType;
 
-@Generated(value="EclipseLink-2.2.0.v20110202-r8913", date="2011-10-06T21:20:01")
+@Generated(value="EclipseLink-2.2.0.v20110202-r8913", date="2011-10-07T13:16:04")
 @StaticMetamodel(Line.class)
 public class Line_ { 
 

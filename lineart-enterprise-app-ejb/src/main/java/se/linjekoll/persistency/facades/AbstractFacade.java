@@ -4,6 +4,7 @@
  */
 package se.linjekoll.persistency.facades;
 
+import java.util.Calendar;
 import java.util.List;
 import javax.persistence.EntityManager;
 

@@ -26,6 +26,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import se.linjekoll.persistency.entities.superclasses.TimeStampedEntity;
 
 /**
  *
@@ -42,7 +43,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Stop.findByName", query = "SELECT s FROM Stop s WHERE s.name = :name"),
     @NamedQuery(name = "Stop.findByCreatedAt", query = "SELECT s FROM Stop s WHERE s.createdAt = :createdAt"),
     @NamedQuery(name = "Stop.findByUpdatedAt", query = "SELECT s FROM Stop s WHERE s.updatedAt = :updatedAt")})
-public class Stop implements Serializable {
+public class Stop extends TimeStampedEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,12 +63,6 @@ public class Stop implements Serializable {
     @Size(max = 255)
     @Column(name = "name", length = 255)
     private String name;
-    @Column(name = "created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-    @Column(name = "updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
     @ManyToMany
     @JoinTable(
             name="lines_stops",
@@ -104,22 +99,6 @@ public class Stop implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     @Override

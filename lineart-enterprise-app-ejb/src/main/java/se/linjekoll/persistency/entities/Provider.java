@@ -22,6 +22,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import se.linjekoll.persistency.entities.superclasses.TimeStampedEntity;
 
 /**
  *
@@ -36,7 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Provider.findByName", query = "SELECT p FROM Provider p WHERE p.name = :name"),
     @NamedQuery(name = "Provider.findByCreatedAt", query = "SELECT p FROM Provider p WHERE p.createdAt = :createdAt"),
     @NamedQuery(name = "Provider.findByUpdatedAt", query = "SELECT p FROM Provider p WHERE p.updatedAt = :updatedAt")})
-public class Provider implements Serializable {
+public class Provider extends TimeStampedEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,12 +48,6 @@ public class Provider implements Serializable {
     @Size(max = 255)
     @Column(name = "name", length = 255)
     private String name;
-    @Column(name = "created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-    @Column(name = "updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
     @OneToMany(mappedBy="provider")
     private List<Line> lines;
     @OneToMany(mappedBy="provider")
@@ -107,22 +102,6 @@ public class Provider implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     @Override

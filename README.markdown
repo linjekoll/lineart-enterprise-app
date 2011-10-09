@@ -11,7 +11,7 @@
      - business logic, db-interaction
      
 ## Setup
-Needs a GlassFish datasource with jndi name jdbc/mysql. This can be created in Netbeans or via the GlassFish admin console.
+Needs a GlassFish datasource with jndi name jdbc/postgresql. This can be created in Netbeans but resides in Glassfish. It can also be created via the GlassFish admin console.
 
 A data source is approximately the same as a GlassFish JDBC Resource. A JDBC resource is tied to a JDBC Connection Pool. The connection pool represents the database and holds information like user credentials for the DB, maximum connections, timeouts and so on.
 

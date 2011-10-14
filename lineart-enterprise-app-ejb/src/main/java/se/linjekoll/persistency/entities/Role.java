@@ -44,7 +44,7 @@ public class Role extends TimeStampedEntity implements Serializable {
     @Column(name = "name", length = 255)
     private String name;
     @OneToMany(mappedBy="role")
-    private List<User> users;
+    private List<Uzer> users;
 
     public Role() {
     }

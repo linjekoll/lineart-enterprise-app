@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>         
+        <title>Login page</title> 
+    </h:head>
+    <h:body>
+        <ui:composition template="WEB-INF/facelets/template.xhtml">
+            
+            <ui:define name="content"> 
+                
+                <h:form id="login">
+                    <h:panelGrid columns="2" border="0">
+                        Username: <h:inputText id="username" 
+                                       value="#{authenticationBean.userName}"/>        
+                        Password: <h:inputSecret id="password"
+                                         value="#{authenticationBean.password}"/>
+                    </h:panelGrid>
+                    <h:commandButton id="submit" 
+                             type="submit"
+                             value="Logga in"
+                             action="#{authenticationBean.login}"/>
+                    <br/>
+                    <h:commandLink id="create"
+                           value="Skapa nytt konto"
+                           action="onGotoRegistration"/>
+                </h:form>
+                
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

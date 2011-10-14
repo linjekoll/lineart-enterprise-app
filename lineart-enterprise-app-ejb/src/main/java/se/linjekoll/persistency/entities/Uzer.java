@@ -41,7 +41,7 @@ import se.linjekoll.persistency.entities.superclasses.TimeStampedEntity;
     @NamedQuery(name = "User.findByRole", query = "SELECT u FROM User u WHERE u.role = :role"),
     @NamedQuery(name = "User.findByCreatedAt", query = "SELECT u FROM User u WHERE u.createdAt = :createdAt"),
     @NamedQuery(name = "User.findByUpdatedAt", query = "SELECT u FROM User u WHERE u.updatedAt = :updatedAt")})
-public class User extends TimeStampedEntity implements Serializable {
+public class Uzer extends TimeStampedEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,10 +66,10 @@ public class User extends TimeStampedEntity implements Serializable {
     @JoinColumn(name = "role_id")
     private Role role;
 
-    public User() {
+    public Uzer() {
     }
 
-    public User(Integer id) {
+    public Uzer(Integer id) {
         this.id = id;
     }
 
@@ -131,10 +131,10 @@ public class User extends TimeStampedEntity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
+        if (!(object instanceof Uzer)) {
             return false;
         }
-        User other = (User) object;
+        Uzer other = (Uzer) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

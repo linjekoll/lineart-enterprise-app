@@ -7,14 +7,14 @@ package se.linjekoll.persistency.facades;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import se.linjekoll.persistency.entities.User;
+import se.linjekoll.persistency.entities.Uzer;
 
 /**
  *
  * @author jesper
  */
 @Stateless
-public class UserFacade extends AbstractFacade<User> {
+public class UserFacade extends AbstractFacade<Uzer> {
     @PersistenceContext(unitName = "postgres_pu")
     private EntityManager em;
 
@@ -23,7 +23,7 @@ public class UserFacade extends AbstractFacade<User> {
     }
 
     public UserFacade() {
-        super(User.class);
+        super(Uzer.class);
     }
     
 }

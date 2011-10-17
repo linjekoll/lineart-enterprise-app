@@ -7,14 +7,14 @@ package se.linjekoll.persistency.facades;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import se.linjekoll.persistency.entities.Traveltime;
+import se.linjekoll.persistency.entities.TravelTime;
 
 /**
  *
  * @author jesper
  */
 @Stateless
-public class TraveltimeFacade extends AbstractFacade<Traveltime> {
+public class TraveltimeFacade extends AbstractFacade<TravelTime> {
     @PersistenceContext(unitName = "linjekoll_pu")
     private EntityManager em;
 
@@ -23,7 +23,7 @@ public class TraveltimeFacade extends AbstractFacade<Traveltime> {
     }
 
     public TraveltimeFacade() {
-        super(Traveltime.class);
+        super(TravelTime.class);
     }
     
 }

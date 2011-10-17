@@ -4,29 +4,27 @@
  */
 package se.linjekoll.web.servlets;
 
-import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import javax.ejb.EJB;
+import java.lang.String;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.ConstraintViolationException;
-import se.linjekoll.persistency.entities.Role;
-import se.linjekoll.persistency.facades.AbstractFacade;
-import se.linjekoll.persistency.facades.RoleFacade;
 
 /**
  *
  * @author jesper
  */
-@WebServlet(name = "NewServlet", urlPatterns = {"/rest/*"})
-public class NewServlet extends HttpServlet {
-    @EJB
-    private RoleFacade rf;
+@WebServlet(name = "RestService", urlPatterns = {"/rest/*"})
+public class RestService extends HttpServlet {
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -36,25 +34,11 @@ public class NewServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet NewServlet</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet NewServlet at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-             */
-            Role r = new Role();
-            r.setName("Administrator");
-            rf.create(r);
-            
-            System.err.println("Servlet!");
-            out.println(rf.allJSON());
+            // String action = parseRequest(request.getPathInfo())
+            out.println(processRequest(request.getPathInfo()));
         } finally {            
             out.close();
         }
@@ -95,4 +79,20 @@ public class NewServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private String processRequest(String pathInfo) {
+        ArrayList<String> validActions = new ArrayList<String>({"lines", "stops"});
+        Pattern p = Pattern.compile("/([a-z]+)/(\\d+)(/([a-z]+))?");
+        Matcher m = p.matcher(pathInfo);
+        Deque<String> matches = new ArrayDeque<String>();
+        while (m.find()) {
+            matches.push(m.group());
+        }
+        
+        String action = matches.pop();
+        
+        if (action == null || )
+        
+        return "";
+    }
 }

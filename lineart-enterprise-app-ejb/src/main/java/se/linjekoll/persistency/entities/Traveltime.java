@@ -30,18 +30,18 @@ import se.linjekoll.persistency.entities.superclasses.TimeStampedEntity;
  * @author jesper
  */
 @Entity
-@Table(name = "traveltimes")
+@Table(name = "travel_times")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Traveltime.findAll", query = "SELECT t FROM Traveltime t"),
-    @NamedQuery(name = "Traveltime.findById", query = "SELECT t FROM Traveltime t WHERE t.id = :id"),
-    @NamedQuery(name = "Traveltime.findByprevious", query = "SELECT t FROM Traveltime t WHERE t.previous = :previous"),
-    @NamedQuery(name = "Traveltime.findBynext", query = "SELECT t FROM Traveltime t WHERE t.next = :next"),
-    @NamedQuery(name = "Traveltime.findByLine", query = "SELECT t FROM Traveltime t WHERE t.line = :line"),
-    @NamedQuery(name = "Traveltime.findByDuration", query = "SELECT t FROM Traveltime t WHERE t.duration = :duration"),
-    @NamedQuery(name = "Traveltime.findByCreatedAt", query = "SELECT t FROM Traveltime t WHERE t.createdAt = :createdAt"),
-    @NamedQuery(name = "Traveltime.findByUpdatedAt", query = "SELECT t FROM Traveltime t WHERE t.updatedAt = :updatedAt")})
-public class Traveltime extends TimeStampedEntity implements Serializable {
+    @NamedQuery(name = "TravelTime.findAll", query = "SELECT t FROM TravelTime t"),
+    @NamedQuery(name = "TravelTime.findById", query = "SELECT t FROM TravelTime t WHERE t.id = :id"),
+    @NamedQuery(name = "TravelTime.findByprevious", query = "SELECT t FROM TravelTime t WHERE t.previous = :previous"),
+    @NamedQuery(name = "TravelTime.findBynext", query = "SELECT t FROM TravelTime t WHERE t.next = :next"),
+    @NamedQuery(name = "TravelTime.findByLine", query = "SELECT t FROM TravelTime t WHERE t.line = :line"),
+    @NamedQuery(name = "TravelTime.findByDuration", query = "SELECT t FROM TravelTime t WHERE t.duration = :duration"),
+    @NamedQuery(name = "TravelTime.findByCreatedAt", query = "SELECT t FROM TravelTime t WHERE t.createdAt = :createdAt"),
+    @NamedQuery(name = "TravelTime.findByUpdatedAt", query = "SELECT t FROM TravelTime t WHERE t.updatedAt = :updatedAt")})
+public class TravelTime extends TimeStampedEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,10 +63,10 @@ public class Traveltime extends TimeStampedEntity implements Serializable {
     @Column(name = "position")
     private Integer position;
 
-    public Traveltime() {
+    public TravelTime() {
     }
 
-    public Traveltime(Integer id) {
+    public TravelTime(Integer id) {
         this.id = id;
     }
 
@@ -140,10 +140,10 @@ public class Traveltime extends TimeStampedEntity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Traveltime)) {
+        if (!(object instanceof TravelTime)) {
             return false;
         }
-        Traveltime other = (Traveltime) object;
+        TravelTime other = (TravelTime) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -152,7 +152,7 @@ public class Traveltime extends TimeStampedEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "Traveltime id: " + id + 
+        return "TravelTime id: " + id + 
                 " previous: " + previous.getName() + 
                 " next: " + next.getName() +
                 " duration: " + duration;

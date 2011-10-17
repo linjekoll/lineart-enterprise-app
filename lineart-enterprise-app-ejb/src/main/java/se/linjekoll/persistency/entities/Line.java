@@ -52,7 +52,7 @@ public class Line extends TimeStampedEntity implements Serializable {
     @Size(max = 255)
     @Column(name = "lid", length = 255)
     private String lid;
-    @Column
+    @Column(name = "name")
     private String name;
     @ManyToOne
     @JoinColumn(name = "provider_id")

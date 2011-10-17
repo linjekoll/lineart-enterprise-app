@@ -7,6 +7,7 @@ package se.linjekoll.persistency.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -53,9 +54,6 @@ public class Stop extends TimeStampedEntity implements Serializable {
     private Integer id;
     @Column(name = "sid")
     private String sid;
-    @ManyToOne
-    @JoinColumn(name = "provider_id")
-    private Provider provider;
     @Lob
     @Size(max = 65535)
     @Column(name = "coordinate", length = 65535)
@@ -68,7 +66,7 @@ public class Stop extends TimeStampedEntity implements Serializable {
             name="lines_stops",
             joinColumns = {@JoinColumn(name="line_id", referencedColumnName="id")},
             inverseJoinColumns = {@JoinColumn(name="stop_id", referencedColumnName="id")})
-    private List<Line> lines;
+    private Map<Line, Integer> lines;
 
     public Stop() {
     }
@@ -124,8 +122,7 @@ public class Stop extends TimeStampedEntity implements Serializable {
     @Override
     public String toString() {
         return "Stop id: " + id +
-                " name: " + name +
-                " provider: " + provider;
+                " name: " + name;
     }
 
     /**
@@ -140,20 +137,6 @@ public class Stop extends TimeStampedEntity implements Serializable {
      */
     public void setSid(String sid) {
         this.sid = sid;
-    }
-
-    /**
-     * @return the provider
-     */
-    public Provider getProvider() {
-        return provider;
-    }
-
-    /**
-     * @param provider the provider to set
-     */
-    public void setProvider(Provider provider) {
-        this.provider = provider;
     }
     
 }

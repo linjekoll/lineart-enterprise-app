@@ -4,8 +4,10 @@
  */
 package se.linjekoll;
 
+import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,18 +49,8 @@ public class NewServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
              */
-            
-            Role r = new Role();
-            r.setName("Apa");
-            try {
-            rf.create(r);
-            } catch (Exception e) {
-                System.err.print(e.getMessage());
-//                if( e.getCause() instanceof ConstraintViolationException) {
-//                ConstraintViolationException ec = (ConstraintViolationException) e.getCause();
-//                System.err.println(ec.getConstraintViolations());
-//                }
-            }
+            System.err.println("Servlet!");
+            out.println(rf.allJSON());
         } finally {            
             out.close();
         }

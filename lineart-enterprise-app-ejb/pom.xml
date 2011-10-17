@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-    <artifactId>lineart-enterprise-app</artifactId>
-    <groupId>se.linjekoll</groupId>
-    <version>0.1</version>
-  </parent>
+        <artifactId>lineart-enterprise-app</artifactId>
+        <groupId>se.linjekoll</groupId>
+        <version>0.1</version>
+    </parent>
 
     <groupId>se.linjekoll</groupId>
     <artifactId>lineart-enterprise-app-ejb</artifactId>
@@ -57,7 +57,11 @@
             <version>4.8.2</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -116,5 +120,10 @@
             <layout>default</layout>
             <name>Repository for library Library[eclipselink]</name>
         </repository>
+        <repository>
+            <id>codehaus-snapshots</id>
+            <url>http://snapshots.repository.codehaus.org</url>
+        </repository>
     </repositories>
+    
 </project>

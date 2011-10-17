@@ -22,7 +22,7 @@ import se.linjekoll.persistency.entities.Role;
  */
 @Stateless
 public class RoleFacade extends AbstractFacade<Role> {
-    @PersistenceContext(unitName = "postgres_pu")
+    @PersistenceContext(unitName = "linjekoll_pu")
     private EntityManager em;
 
     protected EntityManager getEntityManager() {

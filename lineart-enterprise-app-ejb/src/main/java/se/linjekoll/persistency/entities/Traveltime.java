@@ -35,10 +35,10 @@ import se.linjekoll.persistency.entities.superclasses.TimeStampedEntity;
 @NamedQueries({
     @NamedQuery(name = "Traveltime.findAll", query = "SELECT t FROM Traveltime t"),
     @NamedQuery(name = "Traveltime.findById", query = "SELECT t FROM Traveltime t WHERE t.id = :id"),
-    @NamedQuery(name = "Traveltime.findByOrigin", query = "SELECT t FROM Traveltime t WHERE t.origin = :origin"),
-    @NamedQuery(name = "Traveltime.findByDestination", query = "SELECT t FROM Traveltime t WHERE t.destination = :destination"),
+    @NamedQuery(name = "Traveltime.findByprevious", query = "SELECT t FROM Traveltime t WHERE t.previous = :previous"),
+    @NamedQuery(name = "Traveltime.findBynext", query = "SELECT t FROM Traveltime t WHERE t.next = :next"),
     @NamedQuery(name = "Traveltime.findByLine", query = "SELECT t FROM Traveltime t WHERE t.line = :line"),
-    @NamedQuery(name = "Traveltime.findByTime", query = "SELECT t FROM Traveltime t WHERE t.time = :time"),
+    @NamedQuery(name = "Traveltime.findByDuration", query = "SELECT t FROM Traveltime t WHERE t.duration = :duration"),
     @NamedQuery(name = "Traveltime.findByCreatedAt", query = "SELECT t FROM Traveltime t WHERE t.createdAt = :createdAt"),
     @NamedQuery(name = "Traveltime.findByUpdatedAt", query = "SELECT t FROM Traveltime t WHERE t.updatedAt = :updatedAt")})
 public class Traveltime extends TimeStampedEntity implements Serializable {
@@ -50,16 +50,18 @@ public class Traveltime extends TimeStampedEntity implements Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
     @ManyToOne
-    @JoinColumn(name = "origin_id")
-    private Stop origin;
+    @JoinColumn(name = "previous_id")
+    private Stop previous;
     @ManyToOne
-    @JoinColumn(name = "destination_id")
-    private Stop destination;
+    @JoinColumn(name = "next_id")
+    private Stop next;
     @ManyToOne
     @JoinColumn(name = "line_id")
     private Line line;
-    @Column(name = "time")
-    private Integer time;
+    @Column(name = "duration")
+    private Integer duration;
+    @Column(name = "position")
+    private Integer position;
 
     public Traveltime() {
     }
@@ -77,31 +79,31 @@ public class Traveltime extends TimeStampedEntity implements Serializable {
     }
 
     /**
-     * @return the origin
+     * @return the previous
      */
-    public Stop getOrigin() {
-        return origin;
+    public Stop getprevious() {
+        return previous;
     }
 
     /**
-     * @param origin the origin to set
+     * @param previous the previous to set
      */
-    public void setOrigin(Stop origin) {
-        this.origin = origin;
+    public void setprevious(Stop previous) {
+        this.previous = previous;
     }
 
     /**
-     * @return the destination
+     * @return the next
      */
-    public Stop getDestination() {
-        return destination;
+    public Stop getNext() {
+        return next;
     }
 
     /**
-     * @param destination the destination to set
+     * @param next the next to set
      */
-    public void setDestination(Stop destination) {
-        this.destination = destination;
+    public void setNext(Stop next) {
+        this.next = next;
     }
 
     /**
@@ -120,12 +122,12 @@ public class Traveltime extends TimeStampedEntity implements Serializable {
 
 
 
-    public Integer getTime() {
-        return time;
+    public Integer getDuration() {
+        return duration;
     }
 
-    public void setTime(Integer time) {
-        this.time = time;
+    public void setDuration(Integer duration) {
+        this.duration = duration;
     }
 
     @Override
@@ -151,9 +153,10 @@ public class Traveltime extends TimeStampedEntity implements Serializable {
     @Override
     public String toString() {
         return "Traveltime id: " + id + 
-                " origin: " + origin.getName() + 
-                " destination: " + destination.getName() +
-                " time: " + time;
+                " previous: " + previous.getName() + 
+                " next: " + next.getName() +
+                " duration: " + duration;
     }
+
     
 }

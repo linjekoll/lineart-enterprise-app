@@ -32,7 +32,7 @@ import se.linjekoll.persistency.entities.superclasses.TimeStampedEntity;
  * @author jesper
  */
 @Entity
-@Table(name = "lines")
+@Table(name = "lk_lines")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Line.findAll", query = "SELECT l FROM Line l"),
@@ -52,6 +52,8 @@ public class Line extends TimeStampedEntity implements Serializable {
     @Size(max = 255)
     @Column(name = "lid", length = 255)
     private String lid;
+    @Column
+    private String name;
     @ManyToOne
     @JoinColumn(name = "provider_id")
     private Provider provider;
@@ -78,6 +80,48 @@ public class Line extends TimeStampedEntity implements Serializable {
 
     public String getLid() {
         return lid;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the stops
+     */
+    public List<Stop> getStops() {
+        return stops;
+    }
+
+    /**
+     * @param stops the stops to set
+     */
+    public void setStops(List<Stop> stops) {
+        this.stops = stops;
+    }
+
+    /**
+     * @return the vehicleType
+     */
+    public VehicleType getVehicleType() {
+        return vehicleType;
+    }
+
+    /**
+     * @param vehicleType the vehicleType to set
+     */
+    public void setVehicleType(VehicleType vehicleType) {
+        this.vehicleType = vehicleType;
     }
 
     public void setLid(String lid) {

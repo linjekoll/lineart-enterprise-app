@@ -15,7 +15,7 @@ import se.linjekoll.persistency.entities.Stop;
  */
 @Stateless
 public class StopFacade extends AbstractFacade<Stop> {
-    @PersistenceContext(unitName = "postgres_pu")
+    @PersistenceContext(unitName = "linjekoll_pu")
     private EntityManager em;
 
     protected EntityManager getEntityManager() {

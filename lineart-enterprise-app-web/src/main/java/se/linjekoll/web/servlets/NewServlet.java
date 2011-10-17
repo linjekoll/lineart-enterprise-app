@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package se.linjekoll;
+package se.linjekoll.web.servlets;
 
 import java.io.Console;
 import java.io.IOException;
@@ -23,7 +23,7 @@ import se.linjekoll.persistency.facades.RoleFacade;
  *
  * @author jesper
  */
-@WebServlet(name = "NewServlet", urlPatterns = {"/"})
+@WebServlet(name = "NewServlet", urlPatterns = {"/rest/*"})
 public class NewServlet extends HttpServlet {
     @EJB
     private RoleFacade rf;
@@ -49,6 +49,10 @@ public class NewServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
              */
+            Role r = new Role();
+            r.setName("Administrator");
+            rf.create(r);
+            
             System.err.println("Servlet!");
             out.println(rf.allJSON());
         } finally {            

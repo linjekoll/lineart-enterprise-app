@@ -11,8 +11,8 @@
      - business logic, db-interaction
      
 ## Setup
-Needs a GlassFish datasource with jndi name jdbc/postgresql. This can be created in Netbeans but resides in Glassfish. It can also be created via the GlassFish admin console.
+Needs a GlassFish datasource with jndi name jdbc/postgresql. This can be created in Netbeans but resides in Glassfish.
+There seems to be some compatibility issues with the PostgreSQL-driver that is bundled with Netbeans.
+Therefore, you need to get the latest driver from [http://jdbc.postgresql.org/download.html](http://jdbc.postgresql.org/download.html) and use it to create the database connection.
 
 A data source is approximately the same as a GlassFish JDBC Resource. A JDBC resource is tied to a JDBC Connection Pool. The connection pool represents the database and holds information like user credentials for the DB, maximum connections, timeouts and so on.
-
-In the GlassFish console (usually http://localhost:4848) choose Resources -> JDBC -> JDBC Connection Pools.

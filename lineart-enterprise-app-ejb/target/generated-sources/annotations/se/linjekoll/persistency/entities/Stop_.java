@@ -8,7 +8,7 @@ import se.linjekoll.persistency.entities.Line;
 import se.linjekoll.persistency.entities.Provider;
 import se.linjekoll.persistency.entities.superclasses.TimeStampedEntity_;
 
-@Generated(value="EclipseLink-2.2.0.v20110202-r8913", date="2011-10-17T12:09:11")
+@Generated(value="EclipseLink-2.2.0.v20110202-r8913", date="2011-10-17T15:53:19")
 @StaticMetamodel(Stop.class)
 public class Stop_ extends TimeStampedEntity_ {
 

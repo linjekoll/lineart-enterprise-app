@@ -21,6 +21,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,7 +41,6 @@ import se.linjekoll.persistency.entities.superclasses.TimeStampedEntity;
     @NamedQuery(name = "Stop.findAll", query = "SELECT s FROM Stop s"),
     @NamedQuery(name = "Stop.findById", query = "SELECT s FROM Stop s WHERE s.id = :id"),
     @NamedQuery(name = "Stop.findBySid", query = "SELECT s FROM Stop s WHERE s.sid = :sid"),
-    @NamedQuery(name = "Stop.findByProvider", query = "SELECT s FROM Stop s WHERE s.provider = :provider"),
     @NamedQuery(name = "Stop.findByName", query = "SELECT s FROM Stop s WHERE s.name = :name"),
     @NamedQuery(name = "Stop.findByCreatedAt", query = "SELECT s FROM Stop s WHERE s.createdAt = :createdAt"),
     @NamedQuery(name = "Stop.findByUpdatedAt", query = "SELECT s FROM Stop s WHERE s.updatedAt = :updatedAt")})
@@ -66,7 +66,10 @@ public class Stop extends TimeStampedEntity implements Serializable {
             name="lines_stops",
             joinColumns = {@JoinColumn(name="line_id", referencedColumnName="id")},
             inverseJoinColumns = {@JoinColumn(name="stop_id", referencedColumnName="id")})
-    private Map<Line, Integer> lines;
+    private List<Line> lines;
+    
+    @OneToMany(mappedBy="stop")
+    private List<Position> position;
 
     public Stop() {
     }

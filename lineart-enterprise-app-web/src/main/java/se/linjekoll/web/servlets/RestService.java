@@ -13,11 +13,15 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.codehaus.jackson.map.ObjectMapper;
+import se.linjekoll.persistency.facades.PositionFacade;
+import se.linjekoll.persistency.facades.StopFacade;
 
 /**
  *
@@ -25,6 +29,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "RestService", urlPatterns = {"/rest/*"})
 public class RestService extends HttpServlet {
+    @EJB
+    private StopFacade p;
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -36,9 +42,11 @@ public class RestService extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        ObjectMapper om = new ObjectMapper();
         try {
             // String action = parseRequest(request.getPathInfo())
-            out.println(processRequest(request.getPathInfo()));
+            // out.println(processRequest(request.getPathInfo()));
+            out.println(om.writeValueAsString(p.getStops(4)));
         } finally {            
             out.close();
         }
@@ -81,7 +89,7 @@ public class RestService extends HttpServlet {
     }// </editor-fold>
 
     private String processRequest(String pathInfo) {
-        ArrayList<String> validActions = new ArrayList<String>({"lines", "stops"});
+        ArrayList<String> validActions = new ArrayList<String>();
         Pattern p = Pattern.compile("/([a-z]+)/(\\d+)(/([a-z]+))?");
         Matcher m = p.matcher(pathInfo);
         Deque<String> matches = new ArrayDeque<String>();
@@ -90,8 +98,6 @@ public class RestService extends HttpServlet {
         }
         
         String action = matches.pop();
-        
-        if (action == null || )
         
         return "";
     }

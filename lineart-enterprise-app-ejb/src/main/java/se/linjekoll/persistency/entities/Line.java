@@ -54,6 +54,10 @@ public class Line extends TimeStampedEntity implements Serializable {
     private String lid;
     @Column(name = "name")
     private String name;
+    @Column(name = "foreground-color")
+    private String foregroundColor;
+    @Column(name="background-color")
+    private String backgroundColor;
     @ManyToOne
     @JoinColumn(name = "provider_id")
     private Provider provider;
@@ -80,6 +84,34 @@ public class Line extends TimeStampedEntity implements Serializable {
 
     public String getLid() {
         return lid;
+    }
+
+    /**
+     * @return the foregroundColor
+     */
+    public String getForegroundColor() {
+        return foregroundColor;
+    }
+
+    /**
+     * @param foregroundColor the foregroundColor to set
+     */
+    public void setForegroundColor(String foregroundColor) {
+        this.foregroundColor = foregroundColor;
+    }
+
+    /**
+     * @return the backgroundColor
+     */
+    public String getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    /**
+     * @param backgroundColor the backgroundColor to set
+     */
+    public void setBackgroundColor(String backgroundColor) {
+        this.backgroundColor = backgroundColor;
     }
 
     /**

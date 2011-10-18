@@ -50,8 +50,6 @@ public class Provider extends TimeStampedEntity implements Serializable {
     private String name;
     @OneToMany(mappedBy="provider")
     private List<Line> lines;
-    @OneToMany(mappedBy="provider")
-    private List<Stop> stops;
 
     public Provider() {
     }
@@ -84,20 +82,6 @@ public class Provider extends TimeStampedEntity implements Serializable {
      */
     public void setLines(List<Line> lines) {
         this.lines = lines;
-    }
-
-    /**
-     * @return the stops
-     */
-    public List<Stop> getStops() {
-        return stops;
-    }
-
-    /**
-     * @param stops the stops to set
-     */
-    public void setStops(List<Stop> stops) {
-        this.stops = stops;
     }
 
     public void setName(String name) {

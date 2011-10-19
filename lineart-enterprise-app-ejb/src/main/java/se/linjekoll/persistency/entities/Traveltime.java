@@ -46,7 +46,6 @@ public class TravelTime extends TimeStampedEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id", nullable = false)
     private Integer id;
     @ManyToOne

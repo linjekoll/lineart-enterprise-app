@@ -6,6 +6,7 @@ package se.linjekoll.persistency.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -46,7 +49,6 @@ public class User extends TimeStampedEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id", nullable = false)
     private Integer id;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
@@ -65,6 +67,12 @@ public class User extends TimeStampedEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
+    @ManyToMany
+    @JoinTable(
+            name="lines_users",
+            joinColumns = {@JoinColumn(name="line_id", referencedColumnName="id")},
+            inverseJoinColumns = {@JoinColumn(name="user_id", referencedColumnName="id")})
+    private List<Line> lines;
 
     public User() {
     }
@@ -143,7 +151,21 @@ public class User extends TimeStampedEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.chl.jesjos.databasetest.Entities.User[ id=" + id + " ]";
+        return "User: " + this.email + " password hash: " + this.passwordHash;
+    }
+
+    /**
+     * @return the lines
+     */
+    public List<Line> getLines() {
+        return lines;
+    }
+
+    /**
+     * @param lines the lines to set
+     */
+    public void setLines(List<Line> lines) {
+        this.lines = lines;
     }
     
 }

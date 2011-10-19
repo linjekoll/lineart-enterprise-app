@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-    <artifactId>lineart-enterprise-app</artifactId>
-    <groupId>se.linjekoll</groupId>
-    <version>0.1</version>
-  </parent>
+        <artifactId>lineart-enterprise-app</artifactId>
+        <groupId>se.linjekoll</groupId>
+        <version>0.1</version>
+    </parent>
 
     <groupId>se.linjekoll</groupId>
     <artifactId>lineart-enterprise-app-web</artifactId>
@@ -17,6 +17,7 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
     </properties>
 
     <dependencies>
@@ -25,6 +26,26 @@
             <artifactId>lineart-enterprise-app-ejb</artifactId>
             <version>${project.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <version>2.1.1-b04</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.faces</groupId>
+            <artifactId>jsf-impl</artifactId>
+            <version>2.1.1-b04</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.2</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
@@ -39,10 +60,15 @@
             <version>4.8.2</version>
             <scope>test</scope>
         </dependency>
-                <dependency>
+        <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
             <version>1.9.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces </groupId> 
+            <artifactId>primefaces</artifactId> 
+            <version >2.2.1</version>
         </dependency>
     </dependencies>
 
@@ -95,5 +121,18 @@
             </plugin>
         </plugins>
     </build>
-
+    <repositories>
+        <repository>
+            <id>prime-repo</id>
+            <name>PrimeFaces Maven Repository </name> 
+            <url>http://repository.primefaces.org</url> 
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <url>http://download.java.net/maven/2/</url>
+            <id>jsf20</id>
+            <layout>default</layout>
+            <name>Repository for library Library[jsf20]</name>
+        </repository>
+    </repositories>
 </project>

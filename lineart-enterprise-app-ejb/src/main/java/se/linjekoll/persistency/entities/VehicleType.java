@@ -32,7 +32,6 @@ public class VehicleType extends TimeStampedEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id", nullable = false)
     private Integer id;
     @Size(max = 255)

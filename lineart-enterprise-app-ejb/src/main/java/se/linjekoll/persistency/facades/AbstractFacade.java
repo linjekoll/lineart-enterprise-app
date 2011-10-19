@@ -4,9 +4,10 @@
  */
 package se.linjekoll.persistency.facades;
 
-import java.util.Calendar;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 /**
  *
@@ -22,7 +23,15 @@ public abstract class AbstractFacade<T> {
     protected abstract EntityManager getEntityManager();
 
     public void create(T entity) {
-        getEntityManager().persist(entity);
+        try {
+            getEntityManager().persist(entity);
+        } catch (ConstraintViolationException e) {
+            System.err.println("Abstract facade says: " + e.getMessage());
+            for (ConstraintViolation v : e.getConstraintViolations()) {
+                System.err.println("Violation: " + v.getMessage());
+                System.err.println("Info: " + v.getConstraintDescriptor());
+            }
+        }
     }
 
     public void edit(T entity) {

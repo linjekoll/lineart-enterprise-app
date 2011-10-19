@@ -30,13 +30,29 @@ public class StopFacade extends AbstractFacade<Stop> {
     }
     
     public List<JSONStop> getStops(Integer line_id) {
-        String queryString = 
+        String queryString =
                 "SELECT "
-                + "new se.linjekoll.persistency.utilities.JSONStop("
-                + "(p.stop.id, p.stop.name "
-                + "FROM Position p JOIN";
+                + "new se.linjekoll.persistency.utilities.JSONStop(stop.name, stop.id, t.duration, stop.sid, p.position) "
+                + "FROM TravelTime t, Position p "
+                + "JOIN t.previous stop "
+                + "WHERE t.line.id = :line_id "
+                + "AND p.stop = stop AND p.line.id = :line_id "
+                + "ORDER BY p.position";
         TypedQuery<JSONStop> query = em.createQuery(queryString, JSONStop.class);
         query.setParameter("line_id", line_id);
         return query.getResultList();
+    }
+    
+    public List<Stop> searchByName(String input) {
+        String queryString = 
+                "SELECT "
+                + "stop "
+                + "FROM Stop s "
+                + "WHERE lower(s.name) LIKE lower('%:query%') "
+                + "LIMIT 10";
+        TypedQuery<Stop> query = em.createQuery(queryString, Stop.class);
+        query.setParameter("query", input);
+        List<Stop> stop = query.getResultList();
+        return stop;
     }
 }

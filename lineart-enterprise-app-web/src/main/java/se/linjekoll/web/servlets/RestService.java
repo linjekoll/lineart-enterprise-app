@@ -11,6 +11,7 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.HashMap;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.ejb.EJB;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.codehaus.jackson.map.ObjectMapper;
 import se.linjekoll.persistency.facades.PositionFacade;
 import se.linjekoll.persistency.facades.StopFacade;
+import se.linjekoll.persistency.utilities.JSONStop;
 
 /**
  *
@@ -46,7 +48,8 @@ public class RestService extends HttpServlet {
         try {
             // String action = parseRequest(request.getPathInfo())
             // out.println(processRequest(request.getPathInfo()));
-            out.println(om.writeValueAsString(p.getStops(4)));
+            List<JSONStop> stops = p.getStops(4);
+            out.println(om.writeValueAsString(stops));
         } finally {            
             out.close();
         }

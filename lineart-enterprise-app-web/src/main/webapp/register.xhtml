@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>         
+        <title>Registration page</title> 
+    </h:head>
+    <h:body>
+        <ui:composition template="WEB-INF/facelets/template.xhtml">
+            
+            <ui:define name="content"> 
+                
+            <h:form id="registrationForm">            
+                <h:panelGrid columns="2" border="0">
+                Username: <h:inputText id="username" 
+                                       value="#{authenticationBean.email}"
+                                       required="true"/><br/>
+                Password: <h:inputSecret id="password"    
+                                         value="#{authenticationBean.password}"
+                                         required="true"/><br/>
+                          <h:message for="create:password" style="color: red"/>
+                Password (verify): <h:inputSecret id="passwordv"   
+                                                  value="#{authenticationBean.password2}"
+                                                  required="true"/>
+                                   <h:message for="create:passwordv" style="color: red"/>
+                </h:panelGrid>
+            <h:commandButton id="submit" 
+                             value="Skapa konto"
+                             action="#{authenticationBean.createUser}"/>
+            <h:messages style="color: red" globalOnly="true"/>
+        </h:form> 
+                
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

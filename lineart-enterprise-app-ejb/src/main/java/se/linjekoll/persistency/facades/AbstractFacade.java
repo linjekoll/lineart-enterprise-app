@@ -7,6 +7,9 @@ package se.linjekoll.persistency.facades;
 import java.util.Calendar;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -14,6 +17,9 @@ import javax.persistence.EntityManager;
  */
 public abstract class AbstractFacade<T> {
     private Class<T> entityClass;
+//    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("linjekoll_pu");
+//    @PersistenceContext(unitName = "linjekoll_pu")
+//    private EntityManager em = emf.createEntityManager();
 
     public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
